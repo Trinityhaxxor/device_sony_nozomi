@@ -1,1 +1,1 @@
-add_lunch_combo full_nozomi-eng
+add_lunch_combo full_nozomi-userdebug

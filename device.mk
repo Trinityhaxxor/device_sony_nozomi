@@ -14,16 +14,60 @@
 # limitations under the License.
 #
 
-$(call inherit-product, device/sony/nozomi/full_nozomi.mk)
+# Inherit the fuji-common definitions
+$(call inherit-product, device/sony/fuji-common/fuji.mk)
 
-# Inherit EOS common stuff.
-$(call inherit-product, vendor/eos/common.mk)
+DEVICE_PACKAGE_OVERLAYS += device/sony/nozomi/overlay
 
-# Boot Animation
-BOOTANIMATION_RESOLUTION := 720x1280
+# These are the hardware-specific features
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
+# This device is xhdpi.  However the platform doesn't
+# currently contain all of the bitmaps at xhdpi density so
+# we do this little trick to fall back to the hdpi version
+# if the xhdpi doesn't exist.
+PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=LT26i_1257-5499 BUILD_FINGERPRINT=SEMC/LT26i_1257-5499/LT26i:4.0.4/6.1.A.2.50/zfd_zw:user/release-keys PRIVATE_BUILD_DESC="LT26i-user 4.0.4 6.1.A.2.50 zfd_zw test-keys"
+PRODUCT_CHARACTERISTICS := nosdcard
 
-PRODUCT_NAME := full_nozomi
-PRODUCT_DEVICE := nozomi
+# Configuration scripts
+PRODUCT_COPY_FILES += \
+   $(LOCAL_PATH)/prebuilt/pre_hw_config.sh:system/etc/pre_hw_config.sh \
+   $(LOCAL_PATH)/prebuilt/hw_config.sh:system/etc/hw_config.sh
+
+# USB function switching
+PRODUCT_COPY_FILES += \
+   $(LOCAL_PATH)/config/init.semc.service.rc:root/init.semc.service.rc \
+   $(LOCAL_PATH)/config/init.semc.usb.rc:root/init.semc.usb.rc
+
+PRODUCT_COPY_FILES += \
+   $(LOCAL_PATH)/config/fstab.semc:root/fstab.semc
+
+PRODUCT_COPY_FILES += \
+   $(LOCAL_PATH)/config/vold.fstab:system/etc/vold.fstab \
+   $(LOCAL_PATH)/config/media_profiles.xml:system/etc/media_profiles.xml
+
+# Device specific part for two-stage boot
+PRODUCT_COPY_FILES += \
+   $(LOCAL_PATH)/recovery/bootrec-device:recovery/bootrec-device
+
+# Key layouts and touchscreen
+PRODUCT_COPY_FILES += \
+   $(LOCAL_PATH)/config/clearpad.kl:system/usr/keylayout/clearpad.kl \
+   $(LOCAL_PATH)/config/clearpad.idc:system/usr/idc/clearpad.idc \
+   $(LOCAL_PATH)/config/fuji-keypad.kl:system/usr/keylayout/fuji-keypad.kl \
+   $(LOCAL_PATH)/config/gpio-key.kl:system/usr/keylayout/gpio-key.kl \
+   $(LOCAL_PATH)/config/keypad-pmic-fuji.kl:system/usr/keylayout/keypad-pmic-fuji.kl \
+   $(LOCAL_PATH)/config/pmic8058_pwrkey.kl:system/usr/keylayout/pmic8058_pwrkey.kl \
+   $(LOCAL_PATH)/config/simple_remote.kl:system/usr/keylayout/simple_remote.kl
+
+$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
+
+$(call inherit-product-if-exists, vendor/sony/nozomi/nozomi-vendor.mk)
+
+# Wifi
+BOARD_WLAN_DEVICE_REV := bcm4330_b2
+WIFI_BAND             := 802_11_ABG
+$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)

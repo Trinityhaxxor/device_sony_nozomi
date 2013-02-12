@@ -32,6 +32,12 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 PRODUCT_CHARACTERISTICS := nosdcard
 
+# Kernel and prebuilt recovery
+PRODUCT_COPY_FILES += \
+    device/sony/nozomi/prebuilt/kernel:kernel \
+    device/sony/nozomi/prebuilt/ramdisk-recovery.cpio:ramdisk-recovery.cpio \
+    device/sony/nozomi/prebuilt/ramdisk-recovery.img:ramdisk-recovery.img
+
 # Configuration scripts
 PRODUCT_COPY_FILES += \
    $(LOCAL_PATH)/prebuilt/pre_hw_config.sh:system/etc/pre_hw_config.sh \

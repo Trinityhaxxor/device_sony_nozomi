@@ -44,3 +44,6 @@ TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_SDCARD_INTERNAL_DEVICE := /dev/block/mmcblk0p15
 
 TARGET_OTA_ASSERT_DEVICE := LT26i,nozomi
+
+# Custom bootimage generation script
+BOARD_CUSTOM_BOOTIMG_MK := device/sony/nozomi/custombootimg.mk

@@ -32,6 +32,10 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 PRODUCT_CHARACTERISTICS := nosdcard
 
+# Bluetooth vendor library
+PRODUCT_COPY_FILES += \
+    device/sony/nozomi/prebuilt/bluetooth/libbt-vendor.so:system/vendor/lib/libbt-vendor.so
+
 # Kernel and prebuilt recovery
 PRODUCT_COPY_FILES += \
     device/sony/nozomi/prebuilt/kernel:kernel \

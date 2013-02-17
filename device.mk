@@ -14,6 +14,9 @@
 # limitations under the License.
 #
 
+# Inherit the temporary definitions
+$(call inherit-product, device/sony/nozomi/temporary.mk)
+
 # Inherit the fuji-common definitions
 $(call inherit-product, device/sony/fuji-common/fuji.mk)
 
@@ -31,16 +34,6 @@ PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 PRODUCT_CHARACTERISTICS := nosdcard
-
-# Bluetooth vendor library
-PRODUCT_COPY_FILES += \
-    device/sony/nozomi/prebuilt/bluetooth/libbt-vendor.so:system/vendor/lib/libbt-vendor.so
-
-# Kernel and prebuilt recovery
-PRODUCT_COPY_FILES += \
-    device/sony/nozomi/prebuilt/kernel:kernel \
-    device/sony/nozomi/prebuilt/ramdisk-recovery.cpio:ramdisk-recovery.cpio \
-    device/sony/nozomi/prebuilt/ramdisk-recovery.img:ramdisk-recovery.img
 
 # Configuration scripts
 PRODUCT_COPY_FILES += \

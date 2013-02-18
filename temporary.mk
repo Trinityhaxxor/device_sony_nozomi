@@ -19,10 +19,10 @@
 
 # Kernel and prebuilt recovery
 PRODUCT_COPY_FILES += \
-    device/sony/nozomi/prebuilt/kernel:kernel \
-    device/sony/nozomi/prebuilt/ramdisk-recovery.cpio:ramdisk-recovery.cpio \
-    device/sony/nozomi/prebuilt/ramdisk-recovery.img:ramdisk-recovery.img
+    device/sony/nozomi/temporary/kernel:kernel \
+    device/sony/nozomi/temporary/ramdisk-recovery.cpio:ramdisk-recovery.cpio \
+    device/sony/nozomi/temporary/ramdisk-recovery.img:ramdisk-recovery.img
 
 # Bluetooth vendor library
 PRODUCT_COPY_FILES += \
-    device/sony/nozomi/prebuilt/bluetooth/libbt-vendor.so:system/vendor/lib/libbt-vendor.so
+    device/sony/nozomi/temporary/bluetooth/libbt-vendor.so:system/vendor/lib/libbt-vendor.so

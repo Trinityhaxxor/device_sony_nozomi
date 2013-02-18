@@ -22,7 +22,11 @@ USE_CAMERA_STUB := true
 #inherit from the common fuji definitions
 -include device/sony/fuji-common/BoardConfigCommon.mk
 
-TARGET_KERNEL_CONFIG := eos_fuji_nozomi_defconfig
+# Kernel config - disabled for now
+#TARGET_KERNEL_CONFIG := eos_fuji_nozomi_defconfig
+
+# Kernel prebuilt
+TARGET_PREBUILT_KERNEL := device/sony/nozomi/temporary/kernel
 
 # Partition information
 BOARD_VOLD_MAX_PARTITIONS := 16

@@ -42,6 +42,7 @@ PRODUCT_COPY_FILES += \
 
 # USB function switching
 PRODUCT_COPY_FILES += \
+   $(LOCAL_PATH)/config/init.semc.service.rc:root/init.semc.service.rc \
    $(LOCAL_PATH)/config/init.semc.usb.rc:root/init.semc.usb.rc
 
 PRODUCT_COPY_FILES += \
@@ -65,6 +66,14 @@ PRODUCT_COPY_FILES += \
    $(LOCAL_PATH)/config/pmic8058_pwrkey.kl:system/usr/keylayout/pmic8058_pwrkey.kl \
    $(LOCAL_PATH)/config/simple_remote.kl:system/usr/keylayout/simple_remote.kl
 
+# GSM APN list
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/etc/apns-conf.xml:system/etc/apns-conf.xml
+
+# GSM SPN overrides list
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/etc/spn-conf.xml:system/etc/spn-conf.xml
+
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
 $(call inherit-product-if-exists, vendor/sony/nozomi/nozomi-vendor.mk)
@@ -73,11 +82,3 @@ $(call inherit-product-if-exists, vendor/sony/nozomi/nozomi-vendor.mk)
 BOARD_WLAN_DEVICE_REV := bcm4330_b2
 WIFI_BAND             := 802_11_ABG
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
-
-# GSM APN list
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/etc/apns-conf.xml:system/etc/apns-conf.xml
-
-# GSM SPN overrides list
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/etc/spn-conf.xml:system/etc/spn-conf.xml

@@ -28,6 +28,9 @@ USE_CAMERA_STUB := true
 # Kernel prebuilt
 TARGET_PREBUILT_KERNEL := device/sony/nozomi/temporary/kernel
 
+# Custom Bluetooth Header
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/sony/nozomi/bluetooth
+
 # Partition information
 BOARD_VOLD_MAX_PARTITIONS := 16
 
@@ -48,6 +51,3 @@ TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_SDCARD_INTERNAL_DEVICE := /dev/block/mmcblk0p15
 
 TARGET_OTA_ASSERT_DEVICE := LT26i,nozomi
-
-# Custom bootimage generation script
-BOARD_CUSTOM_BOOTIMG_MK := device/sony/nozomi/custombootimg.mk

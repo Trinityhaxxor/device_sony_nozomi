@@ -103,6 +103,8 @@ BOARD_LEGACY_NL80211_STA_EVENTS  := true
 # Graphics
 USE_OPENGL_RENDERER := true
 TARGET_USES_ION := true
+TARGET_USES_OVERLAY := true
+TARGET_USES_SFBYBASS := true
 TARGET_USES_C2D_COMPOSITION := true
 BOARD_EGL_CFG := device/sony/nozomi/config/egl.cfg
 

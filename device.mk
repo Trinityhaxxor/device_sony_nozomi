@@ -200,66 +200,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/sony/nozomi/config/thermald-semc.conf:system/etc/thermald-semc.conf
 
-# Set default USB interface
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
-
-# QC Perf
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.extension_library=/system/lib/libqc-opt.so
-
-# Radio
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.telephony.ril_class=SonyQualcomm8x60RIL \
-    ro.telephony.ril.v3=skippinpukcount \
-    ro.telephony.call_ring.multiple=false \
-    rild.libpath=/system/lib/libril-qc-qmi-1.so \
-    rild.libargs=-d /dev/smd0 \
-    persist.rild.nitz_plmn= \
-    persist.rild.nitz_long_ons_0= \
-    persist.rild.nitz_long_ons_1= \
-    persist.rild.nitz_long_ons_2= \
-    persist.rild.nitz_long_ons_3= \
-    persist.rild.nitz_short_ons_0= \
-    persist.rild.nitz_short_ons_1= \
-    persist.rild.nitz_short_ons_2= \
-    persist.rild.nitz_short_ons_3= \
-    ril.subscription.types=NV,RUIM \
-    DEVICE_PROVISIONED=1 \
-    keyguard.no_require_sim=1 \
-    ro.ril.hsxpa=1 \
-    ro.ril.gprsclass=10 \
-    ro.use_data_netmgrd=true \
-    ro.ril.transmitpower=true
-
-# Graphics
-PRODUCT_PROPERTY_OVERRIDES += \
-    com.qc.hardware=true \
-    debug.sf.hw=1 \
-    debug.composition.type=dyn \
-    debug.mdpcomp.maxlayer=3 \
-    debug.mdpcomp.logs=0 \
-    ro.hwui.text_cache_width=2048 \
-    debug.prerotation.disable=1 \
-    debug.egl.recordable.rgba8888=1
-
-# QCOM CpuGovernorService
-PRODUCT_PROPERTY_OVERRIDES += \
-    dev.pm.dyn_samplingrate=1
-
-# OpenGL ES
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.opengles.version=131072
-
-# Wifi
-PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.interface=wlan0 \
-    wifi.supplicant_scan_interval=30
-
-# ALS
-PRODUCT_PROPERTY_OVERRIDES += \
-   ro.hardware.respect_als=true
-
 # Key layouts and touchscreen
 PRODUCT_COPY_FILES += \
    $(LOCAL_PATH)/config/clearpad.kl:system/usr/keylayout/clearpad.kl \

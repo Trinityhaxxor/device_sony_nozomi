@@ -8,7 +8,7 @@ rild.libargs=-d /dev/smd0
 persist.sys.usb.config=mtp,adb
 ro.vendor.extension_library=/system/lib/libqc-opt.so
 
-ro.telephony.ril_class=SonyQualcommRIL
+ro.telephony.ril_class=SonyQualcomm8x60RIL
 ro.telephony.ril.v3=skippinpukcount
 ro.telephony.call_ring.multiple=false
 

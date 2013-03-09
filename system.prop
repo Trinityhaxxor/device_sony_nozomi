@@ -1,14 +1,22 @@
+# Graphics
 ro.sf.lcd_density=320
+
+# Wlan
 wifi.interface=wlan0
 wifi.supplicant_scan_interval=15
 
+# Custom rild
 rild.libpath=/system/lib/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
 
+# Usb configuration
 persist.sys.usb.config=mtp,adb
+
+# Qualcomm extension library
 ro.vendor.extension_library=/system/lib/libqc-opt.so
 
-ro.telephony.ril_class=SonyQualcomm8x60RIL
+# Custom telephony
+ro.telephony.ril_class=SonyQualcommRIL
 ro.telephony.ril.v3=skippinpukcount
 ro.telephony.call_ring.multiple=false
 
@@ -54,16 +62,20 @@ persist.cne.be.do.sqi.max=100
 persist.cne.be.wlan.sqi.min=0
 persist.cne.be.wlan.sqi.max=100
 
+# Qualcomm Display
 com.qc.hardware=true
 #debug.sf.hw=1
 #debug.enabletr=true
-#debug.composition.type=dyn
-#debug.mdpcomp.maxlayer=3
+debug.composition.type=dyn
+debug.mdpcomp.maxlayer=3
 #debug.mdpcomp.logs=0
 #ro.hwui.text_cache_width=2048
 debug.prerotation.disable=1
 debug.egl.recordable.rgba8888=1
+ro.hdmi.enable=true
 
+# ALS curve
 ro.hardware.respect_als=true
 
+# OpenGLES
 ro.opengles.version=131072

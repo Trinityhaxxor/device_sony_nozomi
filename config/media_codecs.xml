@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2012 The Android Open Source Project
+     Copyright (C) 2012 Sony Mobile Communications AB.
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -12,6 +13,9 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
+
+     NOTE: This file has been modified by Sony Mobile Communications AB.
+     Modifications are licensed under the License.
 -->
 <!--
      Copyright (c) 2012, Code Aurora Forum. All rights reserved.
@@ -27,6 +31,7 @@
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
         </MediaCodec>
+        <MediaCodec name="OMX.google.flac.encoder" type="audio/flac"/>
         <MediaCodec name="OMX.qcom.audio.encoder.qcelp13" type="audio/qcelp" >
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
@@ -68,26 +73,13 @@
         <MediaCodec name="OMX.qcom.audio.decoder.evrchw" type="audio/evrc" >
             <Quirk name="requires-global-flush" />
         </MediaCodec>
-        <MediaCodec name="OMX.qcom.audio.decoder.ac3" type="audio/ac3" >
-            <Quirk name="requires-allocate-on-input-ports" />
-            <Quirk name="requires-allocate-on-output-ports" />
-        </MediaCodec>
-        <MediaCodec name="OMX.qcom.audio.decoder.wma" type="audio/x-ms-wma" >
-            <Quirk name="requires-global-flush" />
-            <Quirk name="requires-wma-pro-component" />
-        </MediaCodec>
-        <MediaCodec name="OMX.qcom.audio.decoder.wmaLossLess" type="audio/x-ms-wma" >
-            <Quirk name="requires-global-flush" />
-        </MediaCodec>
-        <MediaCodec name="OMX.qcom.audio.decoder.wma10Pro" type="audio/x-ms-wma" >
-            <Quirk name="requires-global-flush" />
-        </MediaCodec>
         <MediaCodec name="OMX.qcom.audio.decoder.mp3" type="audio/mpeg" >
             <Quirk name="requires-global-flush" />
         </MediaCodec>
         <!-- Audio Software  -->
         <MediaCodec name="OMX.google.vorbis.decoder" type="audio/vorbis" />
         <MediaCodec name="OMX.google.mp3.decoder" type="audio/mpeg" />
+        <MediaCodec name="MP3Decoder" type="audio/mpeg" />
         <MediaCodec name="OMX.google.amrnb.decoder" type="audio/3gpp" />
         <MediaCodec name="OMX.google.amrwb.decoder" type="audio/amr-wb" />
         <MediaCodec name="OMX.google.aac.decoder" type="audio/mp4a-latm" />
@@ -105,22 +97,12 @@
             <Quirk name="requires-allocate-on-output-ports" />
             <Quirk name="defers-output-buffer-allocation" />
         </MediaCodec>
-        <MediaCodec name="OMX.qcom.video.decoder.mpeg2" type="video/mpeg2" >
-            <Quirk name="requires-allocate-on-input-ports" />
-            <Quirk name="requires-allocate-on-output-ports" />
-            <Quirk name="defers-output-buffer-allocation" />
-        </MediaCodec>
         <MediaCodec name="OMX.qcom.video.decoder.mpeg4" type="video/mp4v-es" >
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
             <Quirk name="defers-output-buffer-allocation" />
         </MediaCodec>
         <MediaCodec name="OMX.qcom.video.decoder.h263" type="video/3gpp" >
-            <Quirk name="requires-allocate-on-input-ports" />
-            <Quirk name="requires-allocate-on-output-ports" />
-            <Quirk name="defers-output-buffer-allocation" />
-        </MediaCodec>
-        <MediaCodec name="OMX.qcom.video.decoder.vc1" type="video/x-ms-wmv" >
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
             <Quirk name="defers-output-buffer-allocation" />

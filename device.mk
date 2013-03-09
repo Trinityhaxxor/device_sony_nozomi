@@ -81,14 +81,21 @@ PRODUCT_PACKAGES += \
 
 # QCOM Omx
 PRODUCT_PACKAGES += \
+    mm-vdec-omx-test \
+    mm-venc-omx-test720p \
     libdivxdrmdecrypt \
-    libc2dcolorconvert \
-    libmm-omxcore \
-    libOmxCore \
     libOmxVdec \
     libOmxVenc \
+    libOmxCore \
     libstagefrighthw \
-    libstagefright_client
+    libc2dcolorconvert
+
+# QCOM Bluetooth
+PRODUCT_PACKAGES += \
+    libbt-vendor \
+    libbluedroid \
+    brcm_patchram_plus \
+    bt_vendor.conf
 
 # QCOM GPS
 PRODUCT_PACKAGES += \

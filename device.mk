@@ -53,7 +53,7 @@ PRODUCT_COPY_FILES += \
 
 # Bootsplash
 PRODUCT_COPY_FILES += \
-   device/sony/nozomi/prebuilt/sony_logo.rle:root/logo.rle
+   device/sony/nozomi/prebuilt/eos_logo.rle:root/logo.rle
 
 # EGL config
 PRODUCT_COPY_FILES += \

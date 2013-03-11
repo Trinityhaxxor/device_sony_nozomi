@@ -1,5 +1,4 @@
 import init.semc.usb.rc
-import init.semc.service.rc
 
 on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
@@ -8,7 +7,6 @@ on init
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /storage 0550 system sdcard_r
     mkdir /storage/sdcard0 0000 system system
-    mkdir /storage/sdcard1 0000 system system
 
     # for backwards compatibility
     symlink /storage/sdcard0 /sdcard
@@ -17,7 +15,7 @@ on init
     export EXTERNAL_STORAGE /storage/sdcard0
 
     mkdir /storage/usbdisk 0666 system system
-    
+
     # Create symlink
     symlink /storage/usbdisk /usbdisk
     symlink /storage/usbdisk /mnt/usbdisk	
@@ -34,13 +32,10 @@ on fs
     # SEMC, TA Daemon
     class_start trimarea
     exec /system/bin/wait4tad
-    class_start emmc
 
 on post-fs
     mkdir /system/etc/firmware/misc 0771 system system
     mkdir /data/tombstones 0755 system system
-    mkdir /data/crashsms 0711 system system
-    mkdir /data/crashsms/crashes 0755 system system
     mkdir /data/mediaserver 0740 media media
 
     # Change to socket location on libkeyctrl/suntory for /data encryption
@@ -67,21 +62,10 @@ on post-fs
     chmod 2770 /dev/socket/qmux_audio
     mkdir /dev/socket/qmux_bluetooth 0770 bluetooth bluetooth
     chmod 2770 /dev/socket/qmux_bluetooth
-    mkdir /dev/socket/qmux_gps 0770 gps gps
-    chmod 2770 /dev/socket/qmux_gps
-
-    # Run pre_hw_config.sh before entering Charge only mode.
-    exec /system/bin/sh /system/etc/pre_hw_config.sh
 
 on early-boot
-    # Start the offline charging (This blocks booting further in some cases)
-    exec /system/bin/chargemon
-
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
-
-    # Touch firmware update
-    exec /system/bin/sh /system/etc/clearpad_fwloader.sh
 
     # Remove write permissions to video related nodes
     chmod 0660 /sys/devices/virtual/graphics/fb1/video_mode
@@ -123,12 +107,6 @@ on early-boot
     chown system graphics /sys/devices/virtual/graphics/fb1/product_description
     chown system graphics /sys/devices/virtual/graphics/fb1/vendor_name
 
-    # Configurate TCP/IP kernel settings
-    exec /system/bin/sh /system/etc/init.netconfig.sh
-
-    # Touch firmware update
-    exec /system/bin/sh /system/etc/clearpad_fwloader.sh
-
     # Permissions for AKM897x sensor
     chown system system /data/misc/akm_set.txt
     chown system system /sys/class/compass/akm8972/interval
@@ -140,15 +118,15 @@ on early-boot
 
 on boot
 # Optimized browser caching and connection handling
-    setprop net.http.idle_cache.size 40
-    setprop net.http.threads 10
-    setprop net.webkit.cache.size 12582912
-    setprop net.nw.cache.prioadvstep 86400000
-    setprop net.nw.cache.weightadvstep 3600000
-    setprop net.nw.cache.orderby weight
-    setprop net.http.idle_cache.shutdown true
-    setprop net.webkit.cache.mindeadsize 4194304
-    setprop net.webkit.cache.maxdeadsize 4194304
+    setprop net.http.idle_cache.size  40
+    setprop net.http.threads  10
+    setprop net.webkit.cache.size  12582912
+    setprop net.nw.cache.prioadvstep  86400000
+    setprop net.nw.cache.weightadvstep  3600000
+    setprop net.nw.cache.orderby  weight
+    setprop net.http.idle_cache.shutdown  true
+    setprop net.webkit.cache.mindeadsize  4194304
+    setprop net.webkit.cache.maxdeadsize  4194304
 
     # USB Host support
     mkdir /dev/bus 0711 system system
@@ -186,20 +164,9 @@ on boot
     chown system system /sys/devices/i2c-3/3-0054/threshold
     chown system system /sys/devices/i2c-3/3-0054/nburst
 
-    # Permissions for Liblights.
-    chown system system /sys/class/leds/green/brightness
-    chown system system /sys/class/leds/green/trigger
-    chown system system /sys/class/leds/red/brightness
-    chown system system /sys/class/leds/red/trigger
-    chown system system /sys/class/leds/blue/brightness
-    chown system system /sys/class/leds/blue/trigger
-    chown system system /sys/class/leds/button-backlight/brightness
-    chown system system /sys/class/leds/button-backlight/trigger
-    chown system system /sys/class/leds/lcd-backlight/brightness
-    chown system system /sys/class/leds/lcd-backlight/als/curve
-    chown system system /sys/class/leds/lcd-backlight/als/enable
-    chown system system /sys/class/leds/keyboard-backlight/brightness
-    chown system system /sys/devices/i2c-3/3-0040/adc_als_value
+    # Default tcp buffersizes for hsdpa
+    setprop net.tcp.buffersize.hsdpa 4094,87380,1220608,4096,16384,1220608
+    setprop net.tcp.buffersize.hspa 4094,87380,1220608,4096,16384,1220608
 
     # bluetooth power up/down interface
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
@@ -211,16 +178,15 @@ on boot
 
     # power-management
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ondemand
+
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor ondemand
     write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 50000
-    write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 85
-    write /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy 0
+    write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 90
+    write /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy 1
     write /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor 4
-    write /sys/devices/system/cpu/cpufreq/ondemand/down_differential 5
+    write /sys/devices/system/cpu/cpufreq/ondemand/down_differential 10
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 384000
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 384000
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1512000
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1512000
 
     write /sys/module/rpm_resources/enable_low_power/L2_cache 1
     write /sys/module/rpm_resources/enable_low_power/pxo 1
@@ -237,15 +203,10 @@ on boot
     write /sys/module/pm_8x60/modes/cpu0/standalone_power_collapse/idle_enabled 1
     write /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/idle_enabled 1
 
-    chown root system /sys/devices/system/cpu/mfreq
+    chown root.system /sys/devices/system/cpu/mfreq
     chmod 220 /sys/devices/system/cpu/mfreq
-    chown root system /sys/devices/system/cpu/cpu1/online
+    chown root.system /sys/devices/system/cpu/cpu1/online
     chmod 664 /sys/devices/system/cpu/cpu1/online
-
-    # Power HAL
-    chown system /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
-    chown system /sys/devices/system/cpu/cpufreq/ondemand/boostpulse
-    chmod 664 /sys/devices/system/cpu/cpufreq/ondemand/boostpulse
 
     # Create the directories and files expected by the lcatp service
     # only found in eng builds.
@@ -262,21 +223,13 @@ on boot
     chmod 0660 /data/misc/tsce/userfile2.txt
     chmod 0660 /data/misc/tsce/logfile.txt
 
-    mount debugfs /sys/kernel/debug /sys/kernel/debug
+    insmod /system/lib/modules/bcmdhd.ko nvram_path=/system/etc/wifi/calibration iface_name=wlan0
 
 on post-fs-data
     mkdir /data/misc/wifi 0770 wifi wifi
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
-
-    # nvimport
-    mkdir /data/etc 0775 root root
-    mkdir /data/etc/wifi 0775 root root
-    chown root root /data/etc
-    chown root root /data/etc/wifi
-    chmod 0775 /data/etc
-    chmod 0775 /data/etc/wifi
 
     chown system system /sys/devices/platform/msm_hsusb/gadget/lun1/file
     chmod 0660 /sys/devices/platform/msm_hsusb/gadget/lun1/file
@@ -287,42 +240,7 @@ on post-fs-data
     write /sys/devices/platform/msm_hsusb/gadget/lun0/nofua 1
     write /sys/devices/platform/msm_hsusb/gadget/lun1/nofua 1
 
-    # Change adj level and min_free_kbytes setting for lowmemory killer to kick in
-    write /sys/module/lowmemorykiller/parameters/adj 0,1,2,4,9,12
-    write /proc/sys/vm/min_free_kbytes 5120
-
     setprop vold.post_fs_data_done 1
-
-service setmsflagbc /system/bin/startupflag bootstarted
-    user root
-    oneshot
-    disabled
-
-# Set the startup flag to boot complete, run on property change
-service setssflagbc /system/bin/startupflag bootcomplete
-    class main
-    user root
-    oneshot
-    disabled
-
-# AT+CTSA and AT+CKPD support
-service semc-atfwd-d /system/bin/semc-atfwd-d
-    class main
-    user root
-    oneshot
-    disabled
-
-# Fast Dormancy
-service fast-dormancy /system/bin/fast-dormancy
-    class late_start
-    user root
-
-on property:ro.enable.fast_dormancy=false
-    stop fast-dormancy
-
-on property:dev.bootcomplete=1
-    start setssflagbc
-    start semc-atfwd-d
 
 # Start suntrold
 service suntrold /system/bin/suntrold
@@ -336,22 +254,16 @@ service secchan /system/bin/secchand
     user system
     group system
 
-# Copy calibration data from NV to kernel drivers
-service nvimport /system/bin/nvimport
+service time_daemon /system/bin/time_daemon
     class main
     user root
+    group root
     oneshot
-
-service fixbt /system/bin/sh /system/etc/init.fixbt.sh
-    class main
-    user root
-    oneshot
-
-service btld /system/bin/btld -lpm 1
-    user root
-    group bluetooth net_bt_admin
     disabled
-    oneshot
+
+on property:persist.timed.enable=true
+    mkdir /data/time/ 0700 system system
+    start time_daemon
 
 service hciattach /system/bin/brcm_patchram_plus --enable_hci --enable_lpm \
     --use_baudrate_for_download --tosleep 20000 --scopcm 0,4,0,0,0,0,0,0,3,0 \
@@ -364,14 +276,25 @@ service hciattach /system/bin/brcm_patchram_plus --enable_hci --enable_lpm \
     oneshot
 
 service updatemiscta /system/bin/updatemiscta
-    class emmc
+    class core
     user root
+    disabled
     oneshot
+
+service rmt_storage /system/bin/rmt_storage
+    class main
+    user root
 
 # SEMC, TA rmt service
 service ta_rmt_service /system/bin/ta_rmt_service
-    class emmc
+    class main
     user root
+
+# Copy calibration data from NV to kernel drivers
+service nvimport /system/bin/nvimport
+    class main
+    user root
+    oneshot
 
 service p2p_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf -N \
@@ -411,11 +334,6 @@ service dhcpcd_bnep0 /system/bin/dhcpcd -ABKL
     disabled
     oneshot
 
-service dhcpcd_eth0 /system/bin/dhcpcd -ABKL
-    class main
-    disabled
-    oneshot
-
 service iprenew_wlan0 /system/bin/dhcpcd -n
     class main
     disabled
@@ -432,9 +350,9 @@ service iprenew_bnep0 /system/bin/dhcpcd -n
     oneshot
 
 service qmuxd /system/bin/qmuxd
-    class main
+    class late_start
     user radio
-    group radio audio bluetooth gps qcom_diag
+    group radio audio bluetooth gps
 
 service netmgrd /system/bin/netmgrd
     class late_start
@@ -466,15 +384,12 @@ service thermald /system/bin/thermald -c /system/etc/thermald-semc.conf
     user root
     disabled
 
-service qrngd /system/bin/qrngd -f
-    class late_start
-    user root
-
 on property:init.svc.bootanim=stopped
     start mpdecision
     start thermald
 
 service nvcustomizer /system/bin/nvcustomizer
+    class late_start
     user root
     oneshot
     disabled
@@ -496,7 +411,7 @@ on property:ro.hdmi.enable=true
     start hdmid
 
 on property:sys.radio.shutdown=true
-    exec /system/bin/sh /system/etc/init.qcom.efs.sync.sh
+   exec /system/bin/sh /system/etc/init.qcom.efs.sync.sh
 
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd

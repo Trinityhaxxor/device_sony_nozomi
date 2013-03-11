@@ -110,9 +110,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.msm8660
 
-# QRNGD
+# e2fsck binary
 PRODUCT_PACKAGES += \
-    qrngd
+    e2fsck
 
 # NFC Support
 PRODUCT_PACKAGES += \

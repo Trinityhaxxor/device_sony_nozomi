@@ -18,8 +18,10 @@
 PRODUCT_PACKAGES := \
     Torch
 
-# Get the long list of APNs
-PRODUCT_COPY_FILES += device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.xml
+# Get the cyanogen list of APNs
+PRODUCT_COPY_FILES += \
+device/sony/nozomi/prebuilt/etc/apns-conf.xml:system/etc/apns-conf.xml \
+device/sony/nozomi/prebuilt/etc/spn-conf.xml:system/etc/spn-conf.xml
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)

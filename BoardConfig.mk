@@ -49,6 +49,7 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_ARCH_VARIANT_CPU := cortex-a9
 ARCH_ARM_HAVE_TLS_REGISTER := true
+ARCH_ARM_HIGH_OPTIMIZATION := true
 TARGET_CPU_SMP := true
 TARGET_BOOTLOADER_BOARD_NAME := fuji
 
@@ -142,7 +143,6 @@ TARGET_RECOVERY_PRE_COMMAND := "touch /cache/recovery/boot;sync;"
 
 BOARD_CUSTOM_BOOTIMG_MK := device/sony/nozomi/custombootimg.mk
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/sony/nozomi/releasetools/semc_ota_from_target_files
-TARGET_OTA_ASSERT_DEVICE := LT26i,nozomi
 BOARD_CUSTOM_GRAPHICS := ../../../device/sony/nozomi/recovery/recovery-gfx.c
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/sony/nozomi/recovery/recovery-keys.c
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"

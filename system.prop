@@ -64,10 +64,10 @@ persist.cne.be.wlan.sqi.max=100
 
 # Qualcomm Display
 com.qc.hardware=true
-#debug.sf.hw=1
-#debug.egl.hw=1
+debug.sf.hw=1
+debug.egl.hw=1
 debug.composition.type=dyn
-#persist.hwc.mdpcomp.enable=true
+persist.hwc.mdpcomp.enable=true
 debug.mdpcomp.logs=0
 debug.egl.recordable.rgba8888=1
 ro.hdmi.enable=true

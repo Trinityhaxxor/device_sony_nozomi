@@ -42,11 +42,11 @@ PRODUCT_MODEL := Xperia S
 # Boot Animation
 BOOTANIMATION_RESOLUTION := 720x1280
 
-# Inherit EOS common stuff.
-$(call inherit-product, vendor/eos/common.mk)
-
 # Override EOS bootanimation
 PRODUCT_COPY_FILES += \
 device/sony/nozomi/prebuilt/bootanimation-mako.zip:system/media/bootanimation.zip
+
+# Inherit EOS common stuff.
+$(call inherit-product, vendor/eos/common.mk)
 
 PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=LT26i_1257-5499 BUILD_FINGERPRINT=SEMC/LT26i_1257-5499/LT26i:4.0.4/6.1.A.2.50/zfd_zw:user/release-keys PRIVATE_BUILD_DESC="LT26i-user 4.0.4 6.1.A.2.50 zfd_zw test-keys"

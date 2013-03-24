@@ -122,6 +122,9 @@ PRODUCT_PACKAGES += \
     Tag \
     com.android.nfc_extras
 
+# Sensors - Sony DASH
+PRODUCT_PACKAGES += \
+    sensors.default
 
 # This device is xhdpi.  However the platform doesn't
 # currently contain all of the bitmaps at xhdpi density so

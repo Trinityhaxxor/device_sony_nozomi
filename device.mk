@@ -69,7 +69,11 @@ PRODUCT_PACKAGES += \
     gralloc.msm8660 \
     hwcomposer.msm8660 \
     libgenlock \
-    liboverlay
+    libmemalloc \
+    liboverlay \
+    libqdutils \
+    libtilerenderer \
+    libI420colorconvert
 
 # QCOM Audio
 PRODUCT_PACKAGES += \
@@ -81,14 +85,17 @@ PRODUCT_PACKAGES += \
 
 # QCOM Omx
 PRODUCT_PACKAGES += \
-    mm-vdec-omx-test \
-    mm-venc-omx-test720p \
     libdivxdrmdecrypt \
-    libOmxVdec \
-    libOmxVenc \
+    libmm-omxcore \
     libOmxCore \
     libstagefrighthw \
-    libc2dcolorconvert
+    libOmxVdec \
+    libOmxVenc \
+    libOmxAacEnc \
+    libOmxAmrEnc \
+    libOmxEvrcEnc \
+    libOmxQcelp13Enc \
+    libdashplayer
 
 # QCOM Bluetooth
 PRODUCT_PACKAGES += \

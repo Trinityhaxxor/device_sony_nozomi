@@ -101,11 +101,10 @@ WIFI_DRIVER_FW_PATH_P2P          := "/vendor/firmware/fw_bcmdhd_p2p.bin"
 WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
 BOARD_LEGACY_NL80211_STA_EVENTS  := true
 
-# Graphics
+# Graphics - CAF
+TARGET_QCOM_DISPLAY_VARIANT := caf
 USE_OPENGL_RENDERER := true
 TARGET_USES_ION := true
-TARGET_USES_OVERLAY := true
-TARGET_USES_SFBYBASS := true
 TARGET_USES_C2D_COMPOSITION := true
 BOARD_EGL_CFG := device/sony/nozomi/config/egl.cfg
 
@@ -163,6 +162,9 @@ COMMON_GLOBAL_CFLAGS += -DQCOM_ACDB_ENABLED -DQCOM_VOIP_ENABLED
 BOARD_HAVE_SONY_AUDIO := true
 BOARD_HAVE_BACK_MIC_CAMCORDER := true
 BOARD_USE_QCOM_LPA := true
+
+# Media - CAF/CM
+TARGET_QCOM_MEDIA_VARIANT := caf
 
 # Light Sensor
 BOARD_SYSFS_LIGHT_SENSOR := /sys/class/leds/lcd-backlight/als/enable

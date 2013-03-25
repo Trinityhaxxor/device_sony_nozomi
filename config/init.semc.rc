@@ -172,6 +172,21 @@ on boot
     chown system system /sys/devices/i2c-3/3-0054/threshold
     chown system system /sys/devices/i2c-3/3-0054/nburst
 
+    # Permissions for Liblights
+    chown system system /sys/class/leds/green/brightness
+    chown system system /sys/class/leds/green/trigger
+    chown system system /sys/class/leds/red/brightness
+    chown system system /sys/class/leds/red/trigger
+    chown system system /sys/class/leds/blue/brightness
+    chown system system /sys/class/leds/blue/trigger
+    chown system system /sys/class/leds/button-backlight/brightness
+    chown system system /sys/class/leds/button-backlight/trigger
+    chown system system /sys/class/leds/lcd-backlight/brightness
+    chown system system /sys/class/leds/lcd-backlight/als/curve
+    chown system system /sys/class/leds/lcd-backlight/als/enable
+    chown system system /sys/class/leds/keyboard-backlight/brightness
+    chown system system /sys/devices/i2c-3/3-0040/adc_als_value
+
     # Default tcp buffersizes for hsdpa
     setprop net.tcp.buffersize.hsdpa 4094,87380,1220608,4096,16384,1220608
     setprop net.tcp.buffersize.hspa 4094,87380,1220608,4096,16384,1220608
@@ -248,6 +263,37 @@ on post-fs-data
     write /sys/devices/platform/msm_hsusb/gadget/lun1/nofua 1
 
     setprop vold.post_fs_data_done 1
+
+service setmsflagbc /system/bin/startupflag bootstarted
+    user root
+    oneshot
+    disabled
+
+# Set the startup flag to boot complete, run on property change
+service setssflagbc /system/bin/startupflag bootcomplete
+    class main
+    user root
+    oneshot
+    disabled
+
+# AT+CTSA and AT+CKPD support
+service semc-atfwd-d /system/bin/semc-atfwd-d
+    class main
+    user root
+    oneshot
+    disabled
+
+# Fast Dormancy
+service fast-dormancy /system/bin/fast-dormancy
+    class late_start
+    user root
+
+on property:ro.enable.fast_dormancy=false
+    stop fast-dormancy
+
+on property:dev.bootcomplete=1
+    start setssflagbc
+    start semc-atfwd-d
 
 # Start suntrold
 service suntrold /system/bin/suntrold

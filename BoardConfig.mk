@@ -166,8 +166,5 @@ BOARD_USE_QCOM_LPA := true
 # Media - CAF/CM
 TARGET_QCOM_MEDIA_VARIANT := caf
 
-# Light Sensor
-BOARD_SYSFS_LIGHT_SENSOR := /sys/class/leds/lcd-backlight/als/enable
-
 # Compilation Optimization Flags
 TARGET_EXTRA_CFLAGS += $(call cc-option,-mtune=cortex-a9,$(call cc-option,-mtune=cortex-a8)) $(call cc-option,-mcpu=cortex-a9,$(call cc-option,-mcpu=cortex-a8))

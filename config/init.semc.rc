@@ -115,6 +115,9 @@ on early-boot
     chown system graphics /sys/devices/virtual/graphics/fb1/product_description
     chown system graphics /sys/devices/virtual/graphics/fb1/vendor_name
 
+    # Configurate TCP/IP kernel settings
+    exec /system/bin/sh /system/etc/init.netconfig.sh
+
     # Permissions for AKM897x sensor
     chown system system /data/misc/akm_set.txt
     chown system system /sys/class/compass/akm8972/interval
@@ -383,6 +386,11 @@ service dhcpcd_p2p /system/bin/dhcpcd -aABKL
     oneshot
 
 service dhcpcd_bnep0 /system/bin/dhcpcd -ABKL
+    class main
+    disabled
+    oneshot
+
+service dhcpcd_eth0 /system/bin/dhcpcd -ABKL
     class main
     disabled
     oneshot

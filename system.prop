@@ -72,8 +72,5 @@ debug.mdpcomp.logs=0
 debug.egl.recordable.rgba8888=1
 ro.hdmi.enable=true
 
-# ALS curve
-ro.hardware.respect_als=true
-
 # OpenGLES
 ro.opengles.version=131072

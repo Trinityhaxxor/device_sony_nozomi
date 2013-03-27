@@ -18,16 +18,16 @@
 #
 
 # Kernel
-PRODUCT_COPY_FILES += \
-    device/sony/nozomi/temporary/kernel:kernel
+#PRODUCT_COPY_FILES += \
+#    device/sony/nozomi/temporary/kernel:kernel
 
 # Modules
-PRODUCT_COPY_FILES += \
-    device/sony/nozomi/temporary/modules/ansi_cprng.ko:system/lib/modules/ansi_cprng.ko \
-    device/sony/nozomi/temporary/modules/qce.ko:system/lib/modules/qce.ko \
-    device/sony/nozomi/temporary/modules/qcedev.ko:system/lib/modules/qcedev.ko \
-    device/sony/nozomi/temporary/modules/qcrypto.ko:system/lib/modules/qcrypto.ko \
-    device/sony/nozomi/temporary/modules/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko
+#PRODUCT_COPY_FILES += \
+#    device/sony/nozomi/temporary/modules/ansi_cprng.ko:system/lib/modules/ansi_cprng.ko \
+#    device/sony/nozomi/temporary/modules/qce.ko:system/lib/modules/qce.ko \
+#    device/sony/nozomi/temporary/modules/qcedev.ko:system/lib/modules/qcedev.ko \
+#    device/sony/nozomi/temporary/modules/qcrypto.ko:system/lib/modules/qcrypto.ko \
+#    device/sony/nozomi/temporary/modules/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko
 
 # Recovery
 PRODUCT_COPY_FILES += \

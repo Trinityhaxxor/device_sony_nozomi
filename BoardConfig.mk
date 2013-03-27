@@ -25,15 +25,15 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 BOARD_HAS_NO_MISC_PARTITION := true
 
-# Kernel properties - disabled for now
-#TARGET_KERNEL_SOURCE := kernel/sony/msm8x60
-#TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
+# Kernel properties
+TARGET_KERNEL_SOURCE := kernel/sony/msm8x60
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
 
-# Kernel config - disabled for now
-#TARGET_KERNEL_CONFIG := eos_fuji_nozomi_defconfig
+# Kernel config
+TARGET_KERNEL_CONFIG := eos_fuji_nozomi_defconfig
 
-# Kernel prebuilt
-TARGET_PREBUILT_KERNEL := device/sony/nozomi/temporary/kernel
+# Kernel prebuilt - Disabled (using inline kernel building)
+#TARGET_PREBUILT_KERNEL := device/sony/nozomi/temporary/kernel
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8660

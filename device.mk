@@ -187,7 +187,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
    $(LOCAL_PATH)/config/vold.fstab:system/etc/vold.fstab \
-   $(LOCAL_PATH)/config/media_codecs.xml:system/etc/media_codecs.xml
+   $(LOCAL_PATH)/config/media_codecs.xml:system/etc/media_codecs.xml \
    $(LOCAL_PATH)/config/media_profiles.xml:system/etc/media_profiles.xml
 
 # NFCEE access control

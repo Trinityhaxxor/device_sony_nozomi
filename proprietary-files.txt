@@ -72,7 +72,6 @@ etc/firmware/yamato_pm4.fw
 etc/flashled_calc_parameters.cfg
 etc/permissions/com.dsi.ant.antradio_library.xml
 etc/sensors.conf
-etc/wifi/calibration
 framework/com.dsi.ant.antradio_library.jar
 lib/hw/camera.msm8660.so
 lib/hw/gps.msm8660.so

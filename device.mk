@@ -234,3 +234,6 @@ $(call inherit-product-if-exists, vendor/sony/nozomi/nozomi-vendor.mk)
 BOARD_WLAN_DEVICE_REV := bcm4330_b2
 WIFI_BAND             := 802_11_ABG
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/config/calibration:system/etc/wifi/calibration

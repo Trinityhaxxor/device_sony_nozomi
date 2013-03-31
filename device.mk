@@ -95,6 +95,7 @@ PRODUCT_PACKAGES += \
     libOmxAmrEnc \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
+    libc2dcolorconvert \
     libdashplayer
 
 # QCOM Bluetooth

@@ -152,8 +152,11 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_PRE_COMMAND := "touch /cache/recovery/boot;sync;"
 
 BOARD_CUSTOM_BOOTIMG_MK := device/sony/nozomi/custombootimg.mk
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/sony/nozomi/releasetools/semc_ota_from_target_files
 
+# AOSP releasetools extensions
+TARGET_RELEASETOOLS_EXTENSIONS := device/sony/nozomi
+
+# Custom LUN path
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
 # Audio - CAF

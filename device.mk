@@ -65,15 +65,11 @@ PRODUCT_COPY_FILES += \
 
 # QCOM Display
 PRODUCT_PACKAGES += \
-    copybit.msm8660 \
-    gralloc.msm8660 \
-    hwcomposer.msm8660 \
     libgenlock \
-    libmemalloc \
     liboverlay \
-    libqdutils \
-    libtilerenderer \
-    libI420colorconvert
+    hwcomposer.msm8660 \
+    gralloc.msm8660 \
+    copybit.msm8660
 
 # QCOM Audio
 PRODUCT_PACKAGES += \
@@ -85,18 +81,13 @@ PRODUCT_PACKAGES += \
 
 # QCOM Omx
 PRODUCT_PACKAGES += \
-    libdivxdrmdecrypt \
     libmm-omxcore \
-    libOmxCore \
-    libstagefrighthw \
+    libdivxdrmdecrypt \
     libOmxVdec \
     libOmxVenc \
-    libOmxAacEnc \
-    libOmxAmrEnc \
-    libOmxEvrcEnc \
-    libOmxQcelp13Enc \
-    libc2dcolorconvert \
-    libdashplayer
+    libOmxCore \
+    libstagefrighthw \
+    libc2dcolorconvert
 
 # QCOM Bluetooth
 PRODUCT_PACKAGES += \

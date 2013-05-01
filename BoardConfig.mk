@@ -101,10 +101,13 @@ WIFI_DRIVER_FW_PATH_P2P          := "/vendor/firmware/fw_bcmdhd_p2p.bin"
 WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
 BOARD_LEGACY_NL80211_STA_EVENTS  := true
 
-# Graphics - CAF
-TARGET_QCOM_DISPLAY_VARIANT := caf
+# Graphics
+#BOARD_USES_HGL := true
+#BOARD_USES_OVERLAY := true
 USE_OPENGL_RENDERER := true
 TARGET_USES_ION := true
+TARGET_USES_OVERLAY := true
+TARGET_USES_SF_BYPASS := true
 TARGET_USES_C2D_COMPOSITION := true
 BOARD_EGL_CFG := device/sony/nozomi/config/egl.cfg
 

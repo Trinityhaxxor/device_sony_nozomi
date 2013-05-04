@@ -154,7 +154,8 @@ TARGET_FORCE_CPU_UPLOAD := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_PRE_COMMAND := "touch /cache/recovery/boot;sync;"
 
-BOARD_CUSTOM_BOOTIMG_MK := device/sony/nozomi/custombootimg.mk
+# disabled for now - see temporary.mk
+#BOARD_CUSTOM_BOOTIMG_MK := device/sony/nozomi/custombootimg.mk
 
 # AOSP releasetools extensions
 TARGET_RELEASETOOLS_EXTENSIONS := device/sony/nozomi

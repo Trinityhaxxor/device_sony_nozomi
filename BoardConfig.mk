@@ -170,7 +170,7 @@ BOARD_HAVE_BACK_MIC_CAMCORDER := true
 BOARD_USE_QCOM_LPA := true
 
 # Media - CAF/CM
-TARGET_QCOM_MEDIA_VARIANT := caf
+#TARGET_QCOM_MEDIA_VARIANT := caf
 
 # Compilation Optimization Flags
 TARGET_EXTRA_CFLAGS += $(call cc-option,-mtune=cortex-a9,$(call cc-option,-mtune=cortex-a8)) $(call cc-option,-mcpu=cortex-a9,$(call cc-option,-mcpu=cortex-a8))

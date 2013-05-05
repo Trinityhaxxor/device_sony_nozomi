@@ -24,10 +24,10 @@ $(uncompressed_ramdisk): $(INSTALLED_RAMDISK_TARGET)
 
 MKELF := device/sony/nozomi/tools/mkelf.py
 INITSH := device/sony/nozomi/combinedroot/init.sh
-BOOTREC_DEVICE := $(PRODUCT_OUT)/recovery/bootrec-device
+BOOTREC_DEVICE := device/sony/nozomi/recovery/bootrec-device
 
-INSTALLED_BOOTIMAGE_TARGET := $(PRODUCT_OUT)/combined-boot.img
-$(INSTALLED_BOOTIMAGE_TARGET): $(PRODUCT_OUT)/kernel $(uncompressed_ramdisk) $(recovery_uncompressed_ramdisk) $(INSTALLED_RAMDISK_TARGET) $(INITSH) $(BOOTREC_DEVICE) $(PRODUCT_OUT)/utilities/busybox $(PRODUCT_OUT)/utilities/extract_elf_ramdisk $(MKBOOTIMG) $(MINIGZIP) $(INTERNAL_BOOTIMAGE_FILES)
+SECONDARY_BOOTIMAGE_TARGET := $(PRODUCT_OUT)/combined-boot.img
+$(SECONDARY_BOOTIMAGE_TARGET): $(PRODUCT_OUT)/kernel $(uncompressed_ramdisk) $(recovery_uncompressed_ramdisk) $(INSTALLED_RAMDISK_TARGET) $(INITSH) $(BOOTREC_DEVICE) $(PRODUCT_OUT)/utilities/busybox $(PRODUCT_OUT)/utilities/extract_elf_ramdisk $(MKBOOTIMG) $(MINIGZIP) $(INTERNAL_BOOTIMAGE_FILES)
 	$(call pretty,"Boot image: $@")
 
 	$(hide) rm -fr $(PRODUCT_OUT)/combinedroot
@@ -48,10 +48,10 @@ $(INSTALLED_BOOTIMAGE_TARGET): $(PRODUCT_OUT)/kernel $(uncompressed_ramdisk) $(r
 	$(hide) cat $(PRODUCT_OUT)/combinedroot.cpio | gzip > $(PRODUCT_OUT)/combinedroot.fs
 	$(hide) python $(MKELF) -o $@ $(PRODUCT_OUT)/kernel@0x40208000 $(PRODUCT_OUT)/combinedroot.fs@0x41500000,ramdisk vendor/sony/nozomi/proprietary/boot/RPM.bin@0x20000,rpm
 
-	$(hide) ln -f $(INSTALLED_BOOTIMAGE_TARGET) $(PRODUCT_OUT)/boot.elf
+	$(hide) ln -f $(SECONDARY_BOOTIMAGE_TARGET) $(PRODUCT_OUT)/boot.elf
 
-INSTALLED_RECOVERYIMAGE_TARGET := $(PRODUCT_OUT)/combined-recovery.img
-$(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) \
+SECONDARY_RECOVERYIMAGE_TARGET := $(PRODUCT_OUT)/recovery_nozomi.img
+$(SECONDARY_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) \
 	$(recovery_ramdisk) \
 	$(recovery_kernel)
 	@echo ----- Making recovery image ------

@@ -24,7 +24,7 @@ TARGET_DIR = os.getenv('OUT')
 def FullOTA_Assertions(self):
 
        #Copy boot.img verbatim
-       bootimage_path = os.path.join(TARGET_DIR, "combined-boot.img")
+       bootimage_path = os.path.join(TARGET_DIR, "boot.elf")
        prebuilt_dir = os.path.join(self.input_tmp, "BOOTABLE_IMAGES")
        prebuilt_path = os.path.join(prebuilt_dir, "boot.img")
        os.mkdir(prebuilt_dir)
@@ -33,7 +33,7 @@ def FullOTA_Assertions(self):
 def IncrementalOTA_Assertions(self):
 
        #Copy boot.img verbatim
-       bootimage_path = os.path.join(TARGET_DIR, "combined-boot.img")
+       bootimage_path = os.path.join(TARGET_DIR, "boot.elf")
        prebuilt_dir = os.path.join(self.input_tmp, "BOOTABLE_IMAGES")
        prebuilt_path = os.path.join(prebuilt_dir, "boot.img")
        os.mkdir(prebuilt_dir)

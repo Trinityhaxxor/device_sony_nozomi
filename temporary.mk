@@ -13,10 +13,6 @@
 # limitations under the License.
 #
 
-# Combined boot image
-PRODUCT_COPY_FILES += \
-    device/sony/nozomi/temporary/combined-boot.img:combined-boot.img \
-
 # Recovery
 PRODUCT_COPY_FILES += \
     device/sony/nozomi/temporary/ramdisk-recovery.cpio:ramdisk-recovery.cpio \

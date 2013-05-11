@@ -75,6 +75,9 @@ on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
 
+    # Touch firmware update
+    exec /system/bin/sh /system/etc/clearpad_fwloader.sh
+
     # Remove write permissions to video related nodes
     chmod 0660 /sys/devices/virtual/graphics/fb1/video_mode
     chmod 0440 /sys/devices/virtual/graphics/fb1/video_mode_str

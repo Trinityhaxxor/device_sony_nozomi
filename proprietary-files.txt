@@ -69,9 +69,7 @@ etc/firmware/tzapps.mdt
 etc/firmware/vidc_1080p.fw
 etc/firmware/yamato_pfp.fw
 etc/firmware/yamato_pm4.fw
-etc/flashled_calc_parameters.cfg
 etc/permissions/com.dsi.ant.antradio_library.xml
-etc/sensors.conf
 framework/com.dsi.ant.antradio_library.jar
 lib/hw/camera.msm8660.so
 lib/hw/gps.msm8660.so

@@ -227,5 +227,15 @@ BOARD_WLAN_DEVICE_REV := bcm4330_b2
 WIFI_BAND             := 802_11_ABG
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
 
+# Wifi calibration
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/config/calibration:system/etc/wifi/calibration
+
+# Flashlight configuration
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/config/flashled_calc_parameters.cfg:system/etc/flashled_calc_parameters.cfg
+
+# Sensor configuration
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/config/sensors.conf:system/etc/sensors.conf
+

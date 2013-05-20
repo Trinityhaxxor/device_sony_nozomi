@@ -68,6 +68,7 @@
 /dev/hsicctl1             0640   radio      radio
 /dev/hsicctl2             0640   radio      radio
 /dev/hsicctl3             0640   radio      radio
+/dev/msm_camera/*         0660   system     camera
 /dev/gemini0              0660   system     camera
 /dev/mdm                  0660   system     radio
 /dev/ttyHSL1              0660   system     system
@@ -131,3 +132,12 @@
 
 # Accelerometer device permission
 /sys/devices/virtual/input/input* bma250_rate 0640 system system
+
+# HDMI
+/sys/devices/virtual/graphics/fb1  edid_modes     0440  system  system
+/sys/devices/virtual/graphics/fb1  edid_3d_modes  0440  system  system
+/sys/devices/virtual/graphics/fb1  hdmi_mode      0440  system  system
+/sys/devices/virtual/graphics/fb1  hpd            0640  system  system
+/sys/devices/virtual/graphics/fb1  scan_info      0440  system  system
+/sys/devices/virtual/graphics/fb1  video_mode     0640  system  system
+/sys/devices/virtual/graphics/fb1  video_mode_str 0440  system  system

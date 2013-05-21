@@ -471,8 +471,26 @@ service hdmid /system/bin/hdmid
     socket hdmid stream 0660 root system graphics
     disabled
 
-on property:ro.hdmi.enable=true
-    start hdmid
+service ppd /system/bin/mm-pp-daemon
+    class late_start
+    user system
+    socket pps stream 0660 system system graphics
+    group system graphics
+
+#service ril-daemon1 /system/bin/rild -c 1
+#    class main
+#    socket rild1 stream 660 root radio
+#    socket rild-debug1 stream 660 radio system
+#    user root
+#    disabled
+#    group radio cache inet misc audio sdcard_r sdcard_rw qcom_oncrpc diag qcom_diag log
+
+#on property:ro.hdmi.enable=true
+#    start hdmid
+
+on property:init.svc.surfaceflinger=stopped
+    stop ppd
+    stop hdmid
 
 on property:sys.radio.shutdown=true
    exec /system/bin/sh /system/etc/init.qcom.efs.sync.sh

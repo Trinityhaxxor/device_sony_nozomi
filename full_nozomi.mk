@@ -1,5 +1,4 @@
-# Copyright (C) 2012 FXP (FreeXperia)
-# Copyright (C) 2013 The Open SEMC Team
+# Copyright (C) 2013 RaymanFX
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,8 +14,8 @@
 #
  
 # Torch
-PRODUCT_PACKAGES := \
-    Torch
+#PRODUCT_PACKAGES := \
+#    Torch
 
 # Get the cyanogen list of APNs
 PRODUCT_COPY_FILES += \

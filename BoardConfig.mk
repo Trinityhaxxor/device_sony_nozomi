@@ -1,5 +1,4 @@
-# Copyright (C) 2012 FXP (FreeXperia)
-# Copyright (C) 2013 The Open SEMC Team
+# Copyright (C) 2013 RaymanFX
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -111,11 +110,11 @@ TARGET_USES_SF_BYPASS := true
 TARGET_USES_C2D_COMPOSITION := true
 BOARD_EGL_CFG := device/sony/nozomi/config/egl.cfg
 
-CAMERA_USES_SURFACEFLINGER_CLIENT_STUB := true
-
+# Custom liblights
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Camera
+CAMERA_USES_SURFACEFLINGER_CLIENT_STUB := true
 COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
 BOARD_NEEDS_MEMORYHEAPPMEM := true
 
@@ -131,7 +130,7 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 SOMC_CFG_SENSORS := true
 SOMC_CFG_SENSORS_LIGHT_AS3676 := yes
 SOMC_CFG_SENSORS_LIGHT_AS3676_MAXRANGE := 13000
-SOMC_CFG_SENSORS_LIGHT_AS3676_PATH := "/sys/devices/i2c-10/10-0040/adc_als_value"
+#SOMC_CFG_SENSORS_LIGHT_AS3676_PATH := "/sys/devices/i2c-10/10-0040/adc_als_value"
 SOMC_CFG_SENSORS_GYRO_MPU3050 := yes
 SOMC_CFG_SENSORS_PROXIMITY_APDS9702 := yes
 SOMC_CFG_SENSORS_ACCEL_BMA250NA_INPUT := yes
@@ -168,9 +167,6 @@ COMMON_GLOBAL_CFLAGS += -DQCOM_ACDB_ENABLED -DQCOM_VOIP_ENABLED
 BOARD_HAVE_SONY_AUDIO := true
 BOARD_HAVE_BACK_MIC_CAMCORDER := true
 BOARD_USE_QCOM_LPA := true
-
-# Media - CAF/CM
-#TARGET_QCOM_MEDIA_VARIANT := caf
 
 # Compilation Optimization Flags
 TARGET_EXTRA_CFLAGS += $(call cc-option,-mtune=cortex-a9,$(call cc-option,-mtune=cortex-a8)) $(call cc-option,-mcpu=cortex-a9,$(call cc-option,-mcpu=cortex-a8))
